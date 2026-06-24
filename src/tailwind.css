@@ -1,27 +1,40 @@
 @import 'tailwindcss';
 @config '../tailwind.config.js';
+
 @theme {
-	/* Claude.ai warm tone colors */
-	--color-gray-50: oklch(0.98 0.004 75);
-	--color-gray-100: oklch(0.95 0.006 75);
-	--color-gray-200: oklch(0.91 0.008 75);
-	--color-gray-300: oklch(0.84 0.010 75);
-	--color-gray-400: oklch(0.72 0.010 75);
-	--color-gray-500: oklch(0.60 0.010 75);
-	--color-gray-600: oklch(0.48 0.010 75);
-	--color-gray-700: oklch(0.38 0.010 75);
-	--color-gray-800: oklch(0.28 0.010 75);
-	--color-gray-850: oklch(0.23 0.010 75);
-	--color-gray-900: oklch(0.18 0.010 75);
-	--color-gray-950: oklch(0.14 0.010 75);
+	/* Claude.ai 2026 Palette */
+
+	--color-gray-50: oklch(0.985 0.008 75);
+	--color-gray-100: oklch(0.965 0.010 75);
+	--color-gray-200: oklch(0.935 0.012 75);
+	--color-gray-300: oklch(0.885 0.014 75);
+	--color-gray-400: oklch(0.760 0.016 75);
+	--color-gray-500: oklch(0.620 0.014 75);
+	--color-gray-600: oklch(0.500 0.012 75);
+	--color-gray-700: oklch(0.390 0.012 75);
+	--color-gray-800: oklch(0.290 0.012 75);
+	--color-gray-850: oklch(0.240 0.012 75);
+	--color-gray-900: oklch(0.190 0.012 75);
+	--color-gray-950: oklch(0.145 0.012 75);
+
+	/* Claude Accent */
+
+	--color-primary-50: oklch(0.975 0.020 55);
+	--color-primary-100: oklch(0.945 0.040 55);
+	--color-primary-200: oklch(0.900 0.080 55);
+	--color-primary-300: oklch(0.840 0.120 55);
+	--color-primary-400: oklch(0.770 0.150 55);
+	--color-primary-500: oklch(0.690 0.170 55);
+	--color-primary-600: oklch(0.610 0.150 55);
+	--color-primary-700: oklch(0.520 0.120 55);
+	--color-primary-800: oklch(0.420 0.090 55);
+	--color-primary-900: oklch(0.330 0.060 55);
 }
+
 /*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
+  Tailwind v4 border compatibility
 */
+
 @layer base {
 	*,
 	::after,
@@ -31,32 +44,81 @@
 		border-color: var(--color-gray-200, currentColor);
 	}
 }
+
 @layer base {
+	:root {
+		--claude-bg: #faf8f3;
+		--claude-surface: #f5f2eb;
+		--claude-surface-hover: #efe9de;
+		--claude-border: #e6dfd3;
+		--claude-text: #2f2a24;
+		--claude-text-secondary: #6b6258;
+	}
+
+	.dark {
+		--claude-bg: #1f1b17;
+		--claude-surface: #2a2520;
+		--claude-surface-hover: #342d27;
+		--claude-border: #3f3831;
+		--claude-text: #f3eee6;
+		--claude-text-secondary: #b6ab9d;
+	}
+
 	html,
+	body,
 	pre {
 		font-family:
-			-apple-system, BlinkMacSystemFont, 'Inter', 'Vazirmatn', ui-sans-serif, system-ui, 'Segoe UI',
-			Roboto, Ubuntu, Cantarell, 'Noto Sans', sans-serif, 'Helvetica Neue', Arial,
-			'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+			Inter,
+			-apple-system,
+			BlinkMacSystemFont,
+			ui-sans-serif,
+			system-ui,
+			'Segoe UI',
+			Roboto,
+			'Helvetica Neue',
+			Arial,
+			sans-serif;
 	}
+
+	html,
+	body {
+		background: var(--claude-bg);
+		color: var(--claude-text);
+	}
+
 	pre {
 		white-space: pre-wrap;
 	}
+
 	button {
 		@apply cursor-pointer;
 	}
+
 	input::placeholder,
 	textarea::placeholder {
-		color: theme(--color-gray-400);
+		color: var(--claude-text-secondary);
 	}
+
 	input[type='checkbox'] {
-		@apply appearance-none size-3.5 align-middle bg-white border border-gray-300 rounded transition cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-800 dark:border-gray-600 self-center;
+		@apply appearance-none size-3.5 rounded border transition cursor-pointer focus:outline-none;
+
+		background: white;
+		border-color: var(--claude-border);
+
 		display: inline-block;
 		position: relative;
 	}
-	input[type='checkbox']:checked {
-		@apply bg-blue-600 border-blue-600;
+
+	.dark input[type='checkbox'] {
+		background: var(--claude-surface);
+		border-color: var(--claude-border);
 	}
+
+	input[type='checkbox']:checked {
+		background: oklch(0.690 0.170 55);
+		border-color: oklch(0.690 0.170 55);
+	}
+
 	input[type='checkbox']:after {
 		content: '';
 		display: block;
@@ -67,12 +129,138 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		pointer-events: none;
-		background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M4 8l3 3l5-5"/></svg>')
+
+		background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'><path d='M4 8l3 3l5-5'/></svg>")
 			center/80% no-repeat;
 	}
+
 	input[type='checkbox']:checked:after {
 		opacity: 1;
 	}
 }
-@custom-variant hover (&:hover);
+
+/* Claude Layout */
+
+body {
+	background: var(--claude-bg);
+	color: var(--claude-text);
+}
+
+/* Main content area */
+
+main {
+	background: var(--claude-bg);
+}
+
+/* Sidebar */
+
+aside {
+	background: var(--claude-surface);
+	border-right: 1px solid var(--claude-border);
+}
+
+/* Chat message bubbles */
+
+.message,
+.chat-message,
+.prose {
+	color: var(--claude-text);
+}
+
+/* User message */
+
+.message.user,
+.message-user {
+	background: transparent;
+}
+
+/* Assistant message */
+
+.message.assistant,
+.message-assistant {
+	background: transparent;
+}
+
+/* Cards */
+
+.card,
+.panel,
+section {
+	border-color: var(--claude-border);
+}
+
+/* Inputs */
+
+input,
+textarea,
+select {
+	background: var(--claude-surface);
+	border: 1px solid var(--claude-border);
+	color: var(--claude-text);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	border-color: oklch(0.690 0.170 55);
+	box-shadow: 0 0 0 2px oklch(0.690 0.170 55 / 0.15);
+}
+
+/* Buttons */
+
+button {
+	transition: all 0.15s ease;
+}
+
+button:hover {
+	background: var(--claude-surface-hover);
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #d5cdc1;
+	border-radius: 999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+	background: #4a423a;
+}
+
+/* Code block */
+
+pre {
+	background: var(--claude-surface) !important;
+	border: 1px solid var(--claude-border);
+	border-radius: 12px;
+	padding: 1rem;
+}
+
+code {
+	font-family:
+		'JetBrains Mono',
+		'Fira Code',
+		'SF Mono',
+		Consolas,
+		monospace;
+}
+
+/* Claude style chat width */
+
+.chat-container,
+#chat-container,
+main .flex.flex-col {
+	max-width: 860px;
+	margin-left: auto;
+	margin-right: auto;
+}
