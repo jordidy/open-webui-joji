@@ -718,14 +718,15 @@ input[type='number'] {
 }
 
 body {
-	background: #fafaf9;
-	color: #2f2f2f;
+    background: #ffffff;
+    color: #1a1a1a;
 }
 
 .dark body {
-	background: #171412;
-	color: #f4f4f5;
+    background: #1e1e1e;
+    color: #f0f0f0;
 }
+
 
 /* Position the handle relative to each LI */
 .pm-li--with-handle {
