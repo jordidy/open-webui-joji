@@ -11,7 +11,7 @@
 	src: url('/assets/fonts/Archivo-Variable.ttf');
 	font-display: swap;
 }
-
+bo
 @font-face {
 	font-family: 'Mona Sans';
 	src: url('/assets/fonts/Mona-Sans.woff2');
@@ -718,13 +718,13 @@ input[type='number'] {
 }
 
 body {
-	background: #fff;
-	color: #000;
+	background: #fafaf9;
+	color: #2f2f2f;
 }
 
 .dark body {
-	background: #171717;
-	color: #eee;
+	background: #171412;
+	color: #f4f4f5;
 }
 
 /* Position the handle relative to each LI */
